@@ -17,7 +17,7 @@ const Main = () => {
   return (
     <HashRouter>
       <Routes>
-        <Route path="/" Component={Layout}>
+        <Route path="webchat" Component={Layout}>
           <Route index Component={Login} />
           <Route path="home" Component={App} />
           <Route path="profile" Component={Profile} />
