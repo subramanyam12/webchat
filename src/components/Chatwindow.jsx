@@ -60,7 +60,7 @@ useEffect(()=>{
         <div className="flex items-center gap-2">
           <img
             className="w-[40px] rounded-full max-sm:w-[60px]"
-            src={frndchat?.profile_img ?`https://127.0.0.1:8000/${frndchat?.profile_img}`:'unknown.png'}
+            src={frndchat?.profile_img ?`https://sidduweb.pythonanywhere.com/${frndchat?.profile_img}`:'unknown.png'}
           />
           <div className="flex flex-col">
             <span className="font-bold">{frndchat?.usertag}</span>
