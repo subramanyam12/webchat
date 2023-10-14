@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineCamera } from "react-icons/ai";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useSelector } from "react-redux";
-import { addprofile } from "../redux/slices/ProfileSlice";
 import { useDispatch } from "react-redux";
 
 
@@ -12,7 +10,6 @@ const Profile = () => {
   const [name, setname] = useState();
   const file = useRef();
   const image = useRef();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,7 +21,7 @@ const Profile = () => {
 
   const profileupdate =async (id, body) => {
     return axios
-      .patch(`http://127.0.0.1:8000/profile/${id}/`, body)
+      .patch(`http://sidduweb.pythonanywhere.com/profile/${id}/`, body)
       .then((resp) => {
         localStorage.setItem("profile", JSON.stringify(resp.data));
         navigate("/home");

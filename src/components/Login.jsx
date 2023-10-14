@@ -29,14 +29,14 @@ const Login = () => {
   }, [token]);
 
   const productpost = (name) => {
-    return axios.post(`http://127.0.0.1:8000/${name}/`, {
+    return axios.post(`http://sidduweb.pythonanywhere.com/${name}/`, {
       username: inputdata.username,
       password: inputdata.password,
     });
   };
 
   const getprofile = (name) => {
-    axios.get(`http://127.0.0.1:8000/userprofile/${name}`).then((resp) => {
+    axios.get(`http://sidduweb.pythonanywhere.com/userprofile/${name}`).then((resp) => {
       dispatch(addprofile({ prof: resp.data }));
       setisloading(false)
       localStorage.setItem("profile", JSON.stringify(resp.data));
@@ -83,6 +83,7 @@ const Login = () => {
     setinputdata({ username: "", password: "", password2: "" });
     setislogin(!islogin);
     seterror(true);
+    setisloading(false)
   };
 
   return (

@@ -16,7 +16,7 @@ const Chatwindow = ({frndchat,chatactive,setchatactive}) => {
  
   const fetchmessages=()=>{
   return (
-    axios.get('http://127.0.0.1:8000/chatmessages')
+    axios.get('http://sidduweb.pythonanywhere.com/chatmessages')
     .then(resp=>{
       let filtermsgs=resp.data.filter(msg=>(msg.sender_profile===localprofile?.id && msg.receiver_profile===frndchat?.id) || (msg.sender_profile===frndchat?.id && msg.receiver_profile===localprofile?.id))
       if(messages.length===filtermsgs.length)return
@@ -38,7 +38,7 @@ useEffect(()=>{
    formdata.append('sender',sender)
    formdata.append('receiver',receiver)
   return(
-    axios.post('http://127.0.0.1:8000/postmessage',formdata)
+    axios.post('http://sidduweb.pythonanywhere.com/postmessage',formdata)
     .then(resp=>{
      setmessages(prev=>[...prev,resp.data])
      setTimeout(() => (box.current.scrollTop = box.current.scrollHeight), 10);

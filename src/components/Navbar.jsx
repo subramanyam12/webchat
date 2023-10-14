@@ -42,7 +42,7 @@ const Navbar = () => {
   ];
 
   const signout = () => {
-    axios.post(`http://127.0.0.1:8000/remove_status/${profile_id}`)
+    axios.post(`http://sidduweb.pythonanywhere.com/remove_status/${profile_id}`)
     removetoken(["mytoken"]);
     localStorage.removeItem("profile");
     setactive(0)

@@ -8,7 +8,7 @@ const Friends = () => {
    
  const fetchfrnds = (id) => {
    return (
-    axios.get(`http://127.0.0.1:8000/friends/${id}`)
+    axios.get(`http://sidduweb.pythonanywhere.com/friends/${id}`)
     .then((resp) =>{
       let data=resp.data
       setfrndlist(data)
@@ -30,7 +30,7 @@ const Friends = () => {
     const formdata=new FormData()
     formdata.append('sender',sender)
     formdata.append('receiver',receiver)
-    return axios.post(`http://127.0.0.1:8000/friendrequestsent/${name}`,formdata)
+    return axios.post(`http://sidduweb.pythonanywhere.com/friendrequestsent/${name}`,formdata)
     .then(resp=>{
       console.log(resp.data);
       if(name==='add'){
@@ -69,7 +69,7 @@ const Friends = () => {
                   className="w-[50px] object-contain h-[50px] rounded-full max-sm:w-[55px] max-sm:h-[55px] "
                   src={
                     user?.profile_img
-                      ? `http://127.0.0.1:8000${user.profile_img}`
+                      ? `http://sidduweb.pythonanywhere.com${user.profile_img}`
                       : "unknown.png"
                   }
                 />

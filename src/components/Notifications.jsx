@@ -11,7 +11,7 @@ const Friends = () => {
 
  const fetchreceivedrequest = () => {
    return (
-    axios.get(`http://127.0.0.1:8000/friendrequestreceive/${userid?.id}`)
+    axios.get(`http://sidduweb.pythonanywhere.com/friendrequestreceive/${userid?.id}`)
     .then(res=>{
      setnotifications(res.data)
       res.data.forEach(item=>{
@@ -35,7 +35,7 @@ const Friends = () => {
    
     formdata.append('sender',sender)
     formdata.append('receiver',receiver)
-    return axios.post(`http://127.0.0.1:8000/friendrequestreceiveconfirm/${name}`,formdata)
+    return axios.post(`http://sidduweb.pythonanywhere.com/friendrequestreceiveconfirm/${name}`,formdata)
     .then(resp=>{
       
       if(name==='confirm'){
@@ -72,7 +72,7 @@ const Friends = () => {
                   className="w-[50px] object-contain h-[50px] rounded-full max-sm:w-[55px] max-sm:h-[55px] "
                   src={
                     user?.profile_img
-                      ? `http://127.0.0.1:8000${user.profile_img}`
+                      ? `http://sidduweb.pythonanywhere.com${user.profile_img}`
                       : "unknown.png"
                   }
                 />

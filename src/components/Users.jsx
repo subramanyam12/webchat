@@ -10,7 +10,7 @@ const Users = ({getproffromusers,setchatactive}) => {
 
   const fetchprofrnds=(id)=>{
     return(
-      axios.get(`http://127.0.0.1:8000/userfriends/${id}`)
+      axios.get(`http://sidduweb.pythonanywhere.com/userfriends/${id}`)
       .then(resp=>{
         setuserlist(resp.data)
         setalluserss(resp.data)
@@ -60,7 +60,7 @@ const Users = ({getproffromusers,setchatactive}) => {
                 <div className="relative">
                 <img
                   className="w-[45px] h-[45px] rounded-full max-sm:w-[55px] max-sm:h-[55px] "
-                  src={`http://127.0.0.1:8000/${user?.profile_img}`}
+                  src={`http://sidduweb.pythonanywhere.com/${user?.profile_img}`}
                 />
                 {user?.online_status && <small className="w-[10px] h-[10px] rounded-full absolute max-sm:right-1 right-0 bottom-0 bg-green-500"></small>}
                 </div>
