@@ -9,7 +9,7 @@ const Settings = () => {
   let navigate = useNavigate()
   const del_request=()=>{
     return (
-        axios.post(`http://sidduweb.pythonanywhere.com/delete_user/${userid?.user}`)
+        axios.post(`https://sidduweb.pythonanywhere.com/delete_user/${userid?.user}`)
         .then(resp=>{
             removetoken(['mytoken'])
             navigate('/')
