@@ -55,7 +55,7 @@ useEffect(()=>{
       
 
   return (
-    <div className={`box-shadow ${chatactive ? 'block' :'hidden'} chatwindow_animate max-sm:pb-8 max-sm:-mt-3 max-sm:-ml-3 max-sm:absolute max-sm:z-10 max-sm:top:0 max-sm:w-full max-sm:h-[95vh] flex flex-col bg-white p-3 pt-2 rounded-xl h-auto`}>
+    <div className={`box-shadow ${chatactive ? 'block' :'hidden'} overflow-hidden chatwindow_animate max-sm:pb-8 max-sm:-mt-3 max-sm:-ml-3 max-sm:absolute max-sm:z-10 max-sm:top:0 max-sm:w-full max-sm:h-[95vh] flex flex-col bg-white p-3 pt-2 rounded-xl h-auto`}>
       <div className="flex items-center justify-between border-b-[1px] pb-2 border-gray-300 p-2 py-1 w-full bg-white">
         <div className="flex items-center gap-2">
           <img
@@ -76,7 +76,7 @@ useEffect(()=>{
       </div>
       <div
         ref={box}
-        className=" py-4 overflow-y-auto chatwindow h-[45vh] max-sm:h-full w-full "
+        className='py-4 overflow-y-auto chatwindow h-[45vh] max-sm:h-full w-full'
       >
         {messages.map((msg) =><Message key={msg.id} person={localprofile?.id===msg.sender_profile } msg={msg.body} currentDate={msg.time_now} />)}
       </div>
