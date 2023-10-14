@@ -1,0 +1,84 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #24313f;
+}
+
+.box-shadow {
+  box-shadow: 0 0 4px #0000002b;
+  border-bottom:1px solid rgb(201, 199, 199);
+}
+
+.user-scroll::-webkit-scrollbar {
+  width: 0px;
+}
+.user-scroll::-webkit-scrollbar-track {
+  background: white;
+}
+
+.user-scroll::-webkit-scrollbar-thumb {
+  border-radius: 50%;
+  background-color: rgb(187, 185, 185);
+}
+.send {
+  align-items: flex-end;
+  padding-right: 8px;
+}
+.send > p {
+  color: #fff;
+  background-color: rgb(124 58 237);
+  border-radius: 12px;
+  border-bottom-right-radius: 0;
+}
+
+.send > p::after {
+  content: "";
+  position: absolute;
+  right: -7px;
+  bottom: 0;
+  border-bottom: 10px solid rgb(124, 58, 237);
+  border-right: 7px solid transparent;
+  border-radius: 0 15px 15px 0;
+}
+
+.receive {
+  align-items: flex-start;
+  padding-left: 8px;
+}
+
+.receive > p {
+  color: #000;
+  background-color: rgb(231, 230, 230);
+  border-radius: 12px;
+  border-bottom-left-radius: 0;
+}
+
+.receive > p::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  bottom: 0;
+  border-bottom: 10px solid rgb(231, 230, 230);
+  border-left: 7px solid transparent;
+  border-radius: 15px 0 0 15px;
+}
+
+.chatwindow::-webkit-scrollbar {
+  width: auto;
+}
+
+
+.chatwindow_animate{
+  animation: moveright 400ms ease-out;
+}
+
+@keyframes moveright {
+  from{
+    margin-left: -200px;
+  }
+  to{
+    margin-left: 0;
+  }
+}
