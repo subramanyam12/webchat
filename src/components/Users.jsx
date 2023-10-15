@@ -65,7 +65,7 @@ const Users = ({getproffromusers,setchatactive}) => {
               <div className="flex gap-3">
                 <div className="relative">
                 <img
-                  className="w-[45px] h-[45px] rounded-full max-sm:w-[55px] max-sm:h-[55px] "
+                  className="w-[45px] h-[45px] object-cover object-center rounded-full max-sm:w-[55px] max-sm:h-[55px] "
                   src={`https://sidduweb.pythonanywhere.com/${user?.profile_img}`}
                 />
                 {user?.online_status && <small className="w-[10px] h-[10px] rounded-full absolute max-sm:right-1 right-0 bottom-0 bg-green-500"></small>}

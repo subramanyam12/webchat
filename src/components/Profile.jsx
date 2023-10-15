@@ -59,7 +59,7 @@ const Profile = () => {
           accept="image/*"
         />
         <div className="relative ">
-          <img className=" object-cover object-center w-[150px] h-[150px] rounded-full" ref={image} src="unknown.png" alt="" />
+          <img className=" object-cover object-center w-[150px] max-sm:w-[200px] max-sm:h-[200px] h-[150px] rounded-full" ref={image} src="unknown.png" alt="" />
           <div className="absolute right-0 border-[1px] border-gray-500 bg-gray-200 rounded-full p-1 -bottom-1">
             <AiOutlineCamera
               onClick={() => file.current.click()}
