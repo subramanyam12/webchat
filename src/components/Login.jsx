@@ -30,7 +30,7 @@ const Login = () => {
   
   
   const loginuser = (name) => {
-    return axios.post(`http://127.0.0.1:8000/${name}/`, {
+    return axios.post(`https://sidduweb.pythonanywhere.com/${name}/`, {
       username: inputdata.username,
       password: inputdata.password,
     });
