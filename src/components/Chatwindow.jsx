@@ -59,7 +59,7 @@ useEffect(()=>{
       <div className="flex items-center justify-between border-b-[1px] pb-2 border-gray-300 p-2 py-1 w-full bg-white">
         <div className="flex items-center gap-2">
           <img
-            className="w-[40px] rounded-full max-sm:w-[60px]"
+            className="w-[40px] h-[40px] max-sm:h-[60px] rounded-full max-sm:w-[60px]"
             src={frndchat?.profile_img ?`https://sidduweb.pythonanywhere.com/${frndchat?.profile_img}`:'unknown.png'}
           />
           <div className="flex flex-col">
