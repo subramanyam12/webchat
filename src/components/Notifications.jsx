@@ -67,7 +67,7 @@ const Friends = () => {
             >
               <div className="flex w-full items-center gap-2">
                 <img
-                  className="w-[50px] object-contain h-[50px] rounded-full max-sm:w-[55px] max-sm:h-[55px] "
+                  className="w-[50px] object-cover object-center h-[50px] rounded-full max-sm:w-[55px] max-sm:h-[55px] "
                   src={
                     user?.profile_img
                       ? `https://sidduweb.pythonanywhere.com${user.profile_img}`
