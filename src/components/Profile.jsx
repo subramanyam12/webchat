@@ -57,8 +57,8 @@ const Profile = () => {
           hidden
           accept="image/*"
         />
-        <div className="relative w-[150px]">
-          <img className="rounded-full" ref={image} src="unknown.png" alt="" />
+        <div className="relative ">
+          <img className=" object-cover object-center w-[200px] h-[200px] rounded-full" ref={image} src="unknown.png" alt="" />
           <div className="absolute right-0 border-[1px] border-gray-500 bg-gray-200 rounded-full p-1 -bottom-1">
             <AiOutlineCamera
               onClick={() => file.current.click()}
