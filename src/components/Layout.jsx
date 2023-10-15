@@ -9,9 +9,10 @@ const Layout = () => {
   const [token, settoken, removetoken] = useCookies(["mytoken"]);
   useEffect(()=>{
       if(JSON.stringify(sessionStorage.getItem('profile'))==='null'){
-     removetoken(["mytoken"]);
-     navigate('/')
-       }
+      removetoken(["mytoken"]);
+      navigate('/')
+      }
+      
   },[])
 
   return (

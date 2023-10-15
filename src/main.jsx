@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import Layout from "./components/Layout";
 import Login from "./components/Login";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route} from "react-router-dom";
 import Profile from "./components/Profile";
 import { Provider } from "react-redux";
 import { Store } from "./redux/Store";
@@ -14,7 +14,7 @@ import Settings from "./components/Settings";
 
 
 const Main = () => {
- 
+
 
   return (
     <HashRouter>

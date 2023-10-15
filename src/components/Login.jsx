@@ -29,8 +29,8 @@ const Login = () => {
   }, [token]);
   
   
-  const productpost = (name) => {
-    return axios.post(`https://sidduweb.pythonanywhere.com/${name}/`, {
+  const loginuser = (name) => {
+    return axios.post(`http://127.0.0.1:8000/${name}/`, {
       username: inputdata.username,
       password: inputdata.password,
     });
@@ -56,14 +56,14 @@ const Login = () => {
       return;
     }
     setisloading(true)
-    productpost(islogin ? "auth" : "users")
+    loginuser(islogin ? "auth" : "users")
       .then((resp) => {
         let data = resp.data;
         if (data && islogin) {
           settoken("mytoken", data.token,{ expires: 0 });
           getprofile(inputdata.username);
         } else if (data) {
-          productpost("auth").then((resp) => {
+          loginuser("auth").then((resp) => {
             settoken("mytoken", resp.data.token,{ expires: 0 });
             getprofile(inputdata.username);
           });
