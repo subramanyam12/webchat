@@ -9,7 +9,7 @@ const Users = ({getproffromusers,setchatactive}) => {
   const [userlist, setuserlist] = useState([]);
   const [alluserss, setalluserss] = useState('')
  const [loading, setloading] = useState(true)
-  
+
   const fetchprofrnds=(id)=>{
     return(
       axios.get(`https://sidduweb.pythonanywhere.com/userfriends/${id}`)
