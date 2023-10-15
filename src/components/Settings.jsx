@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 
 const Settings = () => {
   const [token, settoken, removetoken] = useCookies(["mytoken"]);
-  let userid = JSON.parse(localStorage.getItem("profile"));
+  let userid = JSON.parse(sessionStorage.getItem("profile"));
   let navigate = useNavigate()
   const del_request=()=>{
     return (
@@ -13,7 +13,7 @@ const Settings = () => {
         .then(resp=>{
             removetoken(['mytoken'])
             navigate('/')
-            localStorage.removeItem('profile')
+            sessionStorage.removeItem('profile')
         })  
     )
   }

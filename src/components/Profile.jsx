@@ -6,18 +6,18 @@ import { useDispatch } from "react-redux";
 
 
 const Profile = () => {
-  let localstrprofile = JSON.parse(localStorage.getItem("profile"));
+  let sessionstore = JSON.parse(sessionStorage.getItem("profile"));
   const [name, setname] = useState();
   const file = useRef();
   const image = useRef();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localstrprofile?.profile_img) {
-      image.current.src = localstrprofile.profile_img;
+    if (sessionstore?.profile_img) {
+      image.current.src = sessionstore.profile_img;
     }
-    localstrprofile?.username && localstrprofile?.username!=='null' && setname(localstrprofile?.username);
-  }, [localstrprofile?.profile_img]);
+    sessionstore?.username && sessionstore?.username!=='null' && setname(sessionstore?.username);
+  }, [sessionstore?.profile_img]);
 
   const profileupdate =async (id, body) => {
     return axios
@@ -35,7 +35,7 @@ const Profile = () => {
       formdata.append("profile_img", file.current.files[0]);
     }
     formdata.append("username", name);
-    profileupdate(localstrprofile?.id, formdata);
+    profileupdate(sessionstore?.id, formdata);
   };
 
   const filehandle = () => {

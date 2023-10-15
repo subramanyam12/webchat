@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { BiHomeCircle, BiSolidHomeCircle } from "react-icons/bi";
+import { BiHomeCircle, BiLogoGit, BiSolidHomeCircle } from "react-icons/bi";
 import { AiOutlineSetting, AiFillSetting } from "react-icons/ai";
 import { FaSignOutAlt, FaUserFriends } from "react-icons/fa";
 import { LiaUserFriendsSolid } from "react-icons/lia";
@@ -10,23 +10,21 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 
 const Navbar = () => {
-  const [active, setactive] = useState(0);
   const navlist = ["home", "friends", "notifications", "settings",'profile'];
+  let linkid=window.location.hash.split('/')
+  const [active, setactive] = useState(navlist.indexOf(linkid[1])!==-1 ? navlist.indexOf(linkid[1]) :null);
   const [token, settoken, removetoken] = useCookies(["mytoken"]);
   const navigate = useNavigate();
   const userprofile = useSelector((state) => state.Profile);
   const profileimg = useRef();
-  let currentimg = JSON.parse(localStorage.getItem("profile"))?.profile_img;
-  let profile_id= JSON.parse(localStorage.getItem("profile"))?.id
-
-
+  
+  let sessionstore=JSON.parse(sessionStorage.getItem("profile"))
+  let currentimg = sessionstore?.profile_img;
   useEffect(() => {
+    
     if (!token["mytoken"]) {
       navigate("/");
-      setactive(0)
     }
-    let linkid=window.location.pathname.split('/')
-    setactive(navlist.indexOf(linkid[1]))
     if (currentimg) {
       profileimg.current.src = currentimg;
     }else{
@@ -42,9 +40,9 @@ const Navbar = () => {
   ];
 
   const signout = () => {
-    axios.post(`https://sidduweb.pythonanywhere.com/remove_status/${profile_id}`)
+    axios.post(`https://sidduweb.pythonanywhere.com/remove_status/${sessionstore?.id}`)
     removetoken(["mytoken"]);
-    localStorage.removeItem("profile");
+    sessionStorage.removeItem("profile");
     setactive(0)
   };
 

@@ -4,9 +4,8 @@ import axios from "axios";
 const Friends = () => {
  const [confirmbool, setconfirmbool] = useState({})
  const [delbool, setdelbool] = useState({})
-
  const [notifications, setnotifications] = useState([]);
- let userid = JSON.parse(localStorage.getItem("profile"));
+ let userid = JSON.parse(sessionStorage.getItem("profile"));
   
 
  const fetchreceivedrequest = () => {
@@ -37,14 +36,13 @@ const Friends = () => {
     formdata.append('receiver',receiver)
     return axios.post(`https://sidduweb.pythonanywhere.com/friendrequestreceiveconfirm/${name}`,formdata)
     .then(resp=>{
-      
       if(name==='confirm'){
         setconfirmbool(prev=>({...prev,[receiver]:false}))
        }else{
          setdelbool(prev=>({...prev,[receiver]:false}))
        }
         userid.friendsrequest_receive=userid.friendsrequest_receive.filter(item=>item!==receiver)
-        localStorage.setItem("profile",JSON.stringify(userid))
+        sessionStorage.setItem("profile",JSON.stringify(userid))
     })
   }
 

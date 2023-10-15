@@ -3,11 +3,13 @@ import React,{ useState,useEffect } from "react";
 import { BsSearch } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import Dateconvert from "./Dateconvert";
+import Loading from "./Loading";
 
 const Users = ({getproffromusers,setchatactive}) => {
   const [userlist, setuserlist] = useState([]);
   const [alluserss, setalluserss] = useState('')
-
+ const [loading, setloading] = useState(true)
+  
   const fetchprofrnds=(id)=>{
     return(
       axios.get(`https://sidduweb.pythonanywhere.com/userfriends/${id}`)
@@ -18,13 +20,12 @@ const Users = ({getproffromusers,setchatactive}) => {
     )
   }
   
-  let localprofile = JSON.parse(localStorage.getItem("profile"));
-
+  let localstore = JSON.parse(sessionStorage.getItem("profile"));
   let username = useSelector((state) => state.Profile.at(-1)?.prof);
 
   useEffect(()=>{
-     (localprofile?.id || username?.id) && fetchprofrnds(username?.id || localprofile?.id )
-  },[localprofile?.id])
+     (localstore?.id || username?.id) && fetchprofrnds(username?.id || localstore?.id )
+  },[localstore?.id])
 
   const searchmsg=(e)=>{
       let newsrch=alluserss.filter(msg=>msg.usertag.includes(e.target.value))
@@ -35,13 +36,15 @@ const Users = ({getproffromusers,setchatactive}) => {
     getproffromusers(user)
     setchatactive(true)
   }
+
+  setTimeout(()=>setloading(false),1000)
   
   return (
 
     <div className='flex flex-col z-10 bg-[#ebeaeae7] w-[23vw] max-sm:w-full h-[55vh] max-sm:h-[77vh]'>
       <div className=" mb-3 flex items-center justify-between box-shadow  left-0 px-4 py-[2px] rounded-xl max-sm:mb-2 ">
        <img className=" w-[135px]" src='webchat.png' />
-       <span className=" text-right text-lg max-sm:text-xl font-bold"> @{username ? username?.usertag : localprofile?.usertag}</span>
+       <span className=" text-right text-lg max-sm:text-xl font-bold"> @{username ? username?.usertag : localstore?.usertag}</span>
       </div>
       <div className="flex flex-col gap-6">
         <div className="flex items-center px-3 max-sm:px-[14px]  gap-2 rounded-full bg-white box-shadow">
@@ -50,6 +53,9 @@ const Users = ({getproffromusers,setchatactive}) => {
         </div>
 
         <div className="flex overflow-y-auto user-scroll h-[48.5vh] max-sm:h-[64vh] flex-col gap-2">
+         {loading ? <Loading color={'black'} size={'w-9 h-9'} />
+         :(
+          <>
           {userlist.length ? userlist?.map((user) => (
             <div
               key={user.user}
@@ -80,6 +86,9 @@ const Users = ({getproffromusers,setchatactive}) => {
           )):(
             <div className="w-full text-lg font-bold text-center">No Friends...</div>
           )}
+          </>
+          )}
+
         </div>
       </div>
     </div>

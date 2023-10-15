@@ -12,7 +12,7 @@ const Chatwindow = ({frndchat,chatactive,setchatactive}) => {
   const [inputmsg, setinputmsg] = useState("");
   const box = useRef(null);
   
-  let localprofile = JSON.parse(localStorage.getItem("profile"));
+  let localprofile = JSON.parse(sessionStorage.getItem("profile"));
  
   const fetchmessages=()=>{
   return (

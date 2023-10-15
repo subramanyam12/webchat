@@ -14,13 +14,15 @@ import Settings from "./components/Settings";
 
 
 const Main = () => {
+ 
+
   return (
     <HashRouter>
       <Routes>
         <Route path="/" Component={Layout}>
           <Route index Component={Login} />
-          <Route path="home" Component={App} />
           <Route path="profile" Component={Profile} />
+          <Route path="home" Component={App} />
           <Route path="friends" Component={Friends} />
           <Route path="notifications" Component={Notifications} />
           <Route path="settings" Component={Settings} />

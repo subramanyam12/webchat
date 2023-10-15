@@ -1,16 +1,19 @@
 import React, { useEffect, useState} from "react";
 import axios from "axios";
+import Loading from "./Loading";
 
 const Friends = () => {
   const [requestbool, setrequestbool] = useState({})
   const [frndlist, setfrndlist] = useState([]);
-  let userid = JSON.parse(localStorage.getItem("profile"));
+ const [loading, setloading] = useState(true)
+  let userid = JSON.parse(sessionStorage.getItem("profile"));
    
  const fetchfrnds = (id) => {
    return (
     axios.get(`https://sidduweb.pythonanywhere.com/friends/${id}`)
     .then((resp) =>{
       let data=resp.data
+      !resp.data.length && setloading(false)
       setfrndlist(data)
       data.forEach(item=>{
         let userid=item.user
@@ -40,7 +43,7 @@ const Friends = () => {
         userid.friendsrequest_sent=userid.friendsrequest_sent.filter(item=>item!=Number(resp.data.requestcancelled))
         setrequestbool(prev=>({...prev,[receiver]:true}))
       }
-       localStorage.setItem("profile",JSON.stringify(userid))
+       sessionStorage.setItem("profile",JSON.stringify(userid))
     })
   }
 
@@ -50,6 +53,8 @@ const Friends = () => {
       setfrndlist(frndlist.filter(item=>item.user!==receiver))
     }
   }
+
+  setTimeout(()=>setloading(false),1000)
   return (
     <div className="flex flex-col gap-3 w-[23vw] max-sm:w-full max-sm:h-full bg-gray-200 box-shadow rounded-xl">
       <div className="flex justify-between  mb-3 py-1 left-0 px-4 rounded-xl max-sm:mb-2 text-xl bg-white box-shadow font-bold">
@@ -57,9 +62,10 @@ const Friends = () => {
         <span className="font-bold text-lg">@{userid?.usertag}</span>
       </div>
       <div className="flex overflow-y-auto px-2 user-scroll h-[55vh] max-sm:h-[77vh] rounded-xl flex-col gap-2">
-        {frndlist.length ?(
-          frndlist?.map((user) =>{
-          return (
+        {loading ? <Loading color={'black'} size={'w-9 h-9'} /> :(
+         <>
+         {frndlist.length ? (
+          frndlist?.map((user) =>(
             <div
               key={user.id}
               className="flex p-2 w-full rounded-xl bg-white box-shadow"
@@ -88,10 +94,13 @@ const Friends = () => {
                 </div>
               </div>
             </div>
-          )})
+          ))
         ):(
           <div className="font-bold text-lg w-full text-center">No Suggestions....</div>
+         )}
+         </>
         )}
+
       </div>
     </div>
   );

@@ -27,7 +27,8 @@ const Login = () => {
       navigate("profile");
     }
   }, [token]);
-
+  
+  
   const productpost = (name) => {
     return axios.post(`https://sidduweb.pythonanywhere.com/${name}/`, {
       username: inputdata.username,
@@ -39,7 +40,7 @@ const Login = () => {
     axios.get(`https://sidduweb.pythonanywhere.com/userprofile/${name}`).then((resp) => {
       dispatch(addprofile({ prof: resp.data }));
       setisloading(false)
-      localStorage.setItem("profile", JSON.stringify(resp.data));
+      sessionStorage.setItem("profile", JSON.stringify(resp.data));
     });
   };
 
@@ -59,11 +60,11 @@ const Login = () => {
       .then((resp) => {
         let data = resp.data;
         if (data && islogin) {
-          settoken("mytoken", data.token);
+          settoken("mytoken", data.token,{ expires: 0 });
           getprofile(inputdata.username);
         } else if (data) {
           productpost("auth").then((resp) => {
-            settoken("mytoken", resp.data.token);
+            settoken("mytoken", resp.data.token,{ expires: 0 });
             getprofile(inputdata.username);
           });
         }
@@ -75,8 +76,7 @@ const Login = () => {
         setpassmatch(false);
         setTimeout(()=>setisloading(false),300)
         seterror(errormsg);
-      });
-      
+      }); 
   };
 
   const logintoreg = () => {
