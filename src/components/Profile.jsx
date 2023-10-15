@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineCamera } from "react-icons/ai";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+
 
 
 const Profile = () => {
@@ -21,7 +21,7 @@ const Profile = () => {
 
   const profileupdate =async (id, body) => {
     return axios
-      .patch(`http://sidduweb.pythonanywhere.com/profile/${id}/`, body)
+      .patch(`https://sidduweb.pythonanywhere.com/profile/${id}/`, body)
       .then((resp) => {
         sessionStorage.setItem("profile", JSON.stringify(resp.data));
         navigate("/home");
@@ -32,7 +32,6 @@ const Profile = () => {
   const submithandle = (e) => {
     e.preventDefault();
     var formdata = new FormData();
-    console.log(file.current.files[0]);
     if (file.current.files[0]) {
       formdata.append("profile_img", file.current.files[0]);
     }
@@ -60,7 +59,7 @@ const Profile = () => {
           accept="image/*"
         />
         <div className="relative ">
-          <img className=" object-cover object-center w-[200px] h-[200px] rounded-full" ref={image} src="unknown.png" alt="" />
+          <img className=" object-cover object-center w-[150px] h-[150px] rounded-full" ref={image} src="unknown.png" alt="" />
           <div className="absolute right-0 border-[1px] border-gray-500 bg-gray-200 rounded-full p-1 -bottom-1">
             <AiOutlineCamera
               onClick={() => file.current.click()}
