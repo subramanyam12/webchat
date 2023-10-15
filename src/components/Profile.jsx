@@ -23,14 +23,16 @@ const Profile = () => {
     return axios
       .patch(`http://sidduweb.pythonanywhere.com/profile/${id}/`, body)
       .then((resp) => {
-        localStorage.setItem("profile", JSON.stringify(resp.data));
+        sessionStorage.setItem("profile", JSON.stringify(resp.data));
         navigate("/home");
       });
   };
 
+  
   const submithandle = (e) => {
     e.preventDefault();
     var formdata = new FormData();
+    console.log(file.current.files[0]);
     if (file.current.files[0]) {
       formdata.append("profile_img", file.current.files[0]);
     }

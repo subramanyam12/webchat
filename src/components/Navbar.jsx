@@ -53,7 +53,7 @@ const Navbar = () => {
           <img
             ref={profileimg}
             onClick={()=>setactive(4)}
-            className={`rounded-full ${
+            className={`rounded-full aspect-square object-cover w-full h-full object-center ${
               active === 4 && "outline-white outline-[1px]  outline-double"
             } w-full`}
             src="unknown.png"
