@@ -1,18 +1,22 @@
 import React, { useEffect, useState} from "react";
 import axios from "axios";
+import Loading from "./Loading";
 
 const Friends = () => {
  const [confirmbool, setconfirmbool] = useState({})
  const [delbool, setdelbool] = useState({})
  const [notifications, setnotifications] = useState([]);
+ const [loading, setloading] = useState(true)
+
+
  let userid = JSON.parse(sessionStorage.getItem("profile"));
   
-
  const fetchreceivedrequest = () => {
    return (
     axios.get(`https://sidduweb.pythonanywhere.com/friendrequestreceive/${userid?.id}`)
     .then(res=>{
      setnotifications(res.data)
+     !res.data.length && setloading(false)
       res.data.forEach(item=>{
       let userid=item.user
       setconfirmbool(prev=>({...prev,[userid]:true}))
@@ -50,6 +54,7 @@ const Friends = () => {
     notifyconfirmfetch(sender,receiver,name)
    
   }
+  setTimeout(()=>setloading(false),1000)
  
   return (
     <div className="flex flex-col gap-3 w-[23vw] max-sm:w-full max-sm:h-full bg-gray-200 box-shadow rounded-xl">
@@ -58,6 +63,8 @@ const Friends = () => {
         <span className="font-bold text-lg">@{userid?.usertag}</span>
       </div>
       <div className="flex overflow-y-auto px-2 user-scroll h-[55vh] max-sm:h-[77vh] rounded-xl flex-col gap-2">
+      {loading ? <Loading color={'black'} size={'w-9 h-9'} /> :(
+         <>
         {notifications.length ?(
           notifications?.map((user) =>{
           return (
@@ -93,8 +100,9 @@ const Friends = () => {
           ):
           (
             <div className="font-bold text-lg w-full text-center">No Friend Requests....</div>
-          )
-          }
+          )}
+          </>
+           )}
       </div>
     </div>
   );

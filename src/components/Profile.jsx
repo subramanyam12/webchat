@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineCamera } from "react-icons/ai";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 

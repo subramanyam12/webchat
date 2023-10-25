@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { BiHomeCircle, BiLogoGit, BiSolidHomeCircle } from "react-icons/bi";
+import { BiHomeCircle, BiSolidHomeCircle } from "react-icons/bi";
 import { AiOutlineSetting, AiFillSetting } from "react-icons/ai";
 import { FaSignOutAlt, FaUserFriends } from "react-icons/fa";
 import { LiaUserFriendsSolid } from "react-icons/lia";

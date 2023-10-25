@@ -13,7 +13,6 @@ const Chatwindow = ({frndchat,chatactive,setchatactive}) => {
   const box = useRef(null);
   
   let localprofile = JSON.parse(sessionStorage.getItem("profile"));
- console.log(localprofile);
   const fetchmessages=()=>{
   return (
     axios.get('https://sidduweb.pythonanywhere.com/chatmessages')

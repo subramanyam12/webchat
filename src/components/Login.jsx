@@ -60,11 +60,11 @@ const Login = () => {
       .then((resp) => {
         let data = resp.data;
         if (data && islogin) {
-          settoken("mytoken", data.token,{ expires: 0 });
+          settoken("mytoken", data.token);
           getprofile(inputdata.username);
         } else if (data) {
           loginuser("auth").then((resp) => {
-            settoken("mytoken", resp.data.token,{ expires: 0 });
+            settoken("mytoken", resp.data.token);
             getprofile(inputdata.username);
           });
         }

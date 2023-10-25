@@ -15,7 +15,6 @@ import Settings from "./components/Settings";
 
 const Main = () => {
 
-
   return (
     <HashRouter>
       <Routes>
@@ -30,6 +29,7 @@ const Main = () => {
       </Routes>
    </HashRouter>
   );
+  
 };
 
 ReactDOM.createRoot(document.getElementById("root")).render(

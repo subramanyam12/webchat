@@ -35,7 +35,6 @@ const Friends = () => {
     formdata.append('receiver',receiver)
     return axios.post(`https://sidduweb.pythonanywhere.com/friendrequestsent/${name}`,formdata)
     .then(resp=>{
-      console.log(resp.data);
       if(name==='add'){
         userid.friendsrequest_sent.push(Number(resp.data.requestsentto))
         setrequestbool(prev=>({...prev,[receiver]:false}))
@@ -85,7 +84,7 @@ const Friends = () => {
                   </span>
                   <div className="flex w-[100%] text-white font-bold justify-around">
                     <button onClick={()=>requestbtn(userid.user,user.user,'add')} className={`bg-violet-600 ${userid?.friendsrequest_sent.includes(user.user) &&  'pointer-events-none opacity-80'} rounded-[5px] w-[6vw] max-sm:w-[25vw] py-[2px]`}>
-                      {userid?.friendsrequest_sent?.includes(user.user) || requestbool[user?.user]  ?'Sent' : "Add"}
+                      {userid?.friendsrequest_sent?.includes(user.user) || !requestbool[user?.user]  ?'Sent' : "Add"}
                     </button>
                     <button onClick={()=>requestbtn(userid.user,user.user,'remove')} className={` ${userid?.friendsrequest_sent.includes(user.user) ? 'bg-gray-300 text-black' :'bg-red-400' } rounded-[5px] w-[6vw] max-sm:w-[28vw] max-sm:py-[6px] py-[2px]`}>
                       {userid?.friendsrequest_sent?.includes(user.user) || !requestbool[user?.user]  ?'Cancel' : "Remove"}
