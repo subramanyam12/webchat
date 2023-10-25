@@ -25,6 +25,9 @@ const Users = ({getproffromusers,setchatactive}) => {
 
   useEffect(()=>{
      (localstore?.id || username?.id) && fetchprofrnds(username?.id || localstore?.id )
+
+    var intervalId= setInterval(()=>fetchprofrnds(username?.id || localstore?.id ),2000)
+    return ()=>clearInterval(intervalId)
   },[localstore?.id])
 
   const searchmsg=(e)=>{
