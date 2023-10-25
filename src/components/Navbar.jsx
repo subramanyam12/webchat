@@ -66,8 +66,8 @@ const Navbar = () => {
             to={token["mytoken"] && navlist[id]}
             key={id}
             onClick={() => setactive(id)}
-            className={` w-full max-sm:w-12 aspect-square duration-200 flex text-xl max-sm:text-2xl items-center shadow-inner justify-center rounded-full ${
-              active === id && "text-2xl shadow-[#1f122063] bg-[#761a8f63]"
+            className={` w-full max-sm:w-12 aspect-square duration-200 flex text-xl max-sm:text-2xl items-center  justify-center rounded-full ${
+              active === id && "text-2xl shadow-[#1f122063] shadow-inner bg-[#761a8f63]"
             }`}
           >
             {active !== id ? <Outline /> : <Fill />}

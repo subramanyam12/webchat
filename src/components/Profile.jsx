@@ -15,6 +15,8 @@ const Profile = () => {
   useEffect(() => {
     if (sessionstore?.profile_img) {
       image.current.src = sessionstore.profile_img;
+    }else{
+      image.current.src="unknown.png"
     }
     sessionstore?.username && sessionstore?.username!=='null' && setname(sessionstore?.username);
   }, [sessionstore?.profile_img]);
