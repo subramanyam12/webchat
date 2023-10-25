@@ -25,12 +25,13 @@ const Navbar = () => {
     if (!token["mytoken"]) {
       navigate("/");
     }
+    setactive(navlist.indexOf(linkid[1])!==-1 ? navlist.indexOf(linkid[1]) :null)
     if (currentimg) {
       profileimg.current.src = currentimg;
     }else{
       profileimg.current.src = 'unknown.png';
     }
-  }, [token, currentimg]);
+  }, [token, currentimg,active]);
 
   const icons = [
     [BiHomeCircle, BiSolidHomeCircle],
