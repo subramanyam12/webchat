@@ -50,9 +50,12 @@ const Login = () => {
 
   const formhandle = (e) => {
     e.preventDefault();
+    seterror("")
+    let time=setTimeout(()=>seterror("Network is slow please check your internet..."),5000)
     if (!islogin && inputdata.password !== inputdata.password2) {
       seterror("Passwords didn't match");
       setpassmatch(false);
+      clearTimeout(time)
       return;
     }
     setisloading(true)
@@ -68,15 +71,17 @@ const Login = () => {
             getprofile(inputdata.username);
           });
         }
+        clearTimeout(time)
       })
       .catch((error) => {
         let errormsg = error.response.data?.non_field_errors?.[0]
           ? error.response.data?.non_field_errors[0]
           : error.response.data.username[0];
         setpassmatch(false);
-        setTimeout(()=>setisloading(false),300)
+        setTimeout(()=>setisloading(false),100)
         seterror(errormsg);
-      }); 
+        clearTimeout(time)
+      });
   };
 
   const logintoreg = () => {
