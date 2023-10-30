@@ -10,6 +10,7 @@ const Users = ({getproffromusers,setchatactive}) => {
   const [alluserss, setalluserss] = useState('')
  const [loading, setloading] = useState(true)
 
+
   const fetchprofrnds=(id)=>{
     return(
       axios.get(`https://sidduweb.pythonanywhere.com/userfriends/${id}`)
@@ -19,19 +20,20 @@ const Users = ({getproffromusers,setchatactive}) => {
       })
     )
   }
-  
+
   let localstore = JSON.parse(sessionStorage.getItem("profile"));
   let username = useSelector((state) => state.Profile.at(-1)?.prof);
-
+  
   useEffect(()=>{
-     (localstore?.id || username?.id) && fetchprofrnds(username?.id || localstore?.id )
+    (localstore?.id || username?.id) && fetchprofrnds(username?.id || localstore?.id )
 
-    var intervalId= setInterval(()=>fetchprofrnds(username?.id || localstore?.id ),2000)
-    return ()=>clearInterval(intervalId)
+    // let intervalId= setInterval(()=>fetchprofrnds(username?.id || localstore?.id ),2000)
+    // return ()=>clearInterval(intervalId)
+  
   },[localstore?.id])
 
   const searchmsg=(e)=>{
-      let newsrch=alluserss.filter(msg=>msg.usertag.includes(e.target.value))
+      let newsrch=alluserss.filter(msg=>msg.usertag.toLowerCase().includes(e.target.value.toLowerCase()))
       setuserlist(e.target.value ? newsrch : alluserss)
   }
 
@@ -52,7 +54,7 @@ const Users = ({getproffromusers,setchatactive}) => {
       <div className="flex flex-col gap-6">
         <div className="flex items-center px-3 max-sm:px-[14px]  gap-2 rounded-full bg-white box-shadow">
           <BsSearch className="text-sm max-sm:text-xl" />
-          <input type="search" placeholder="search" onChange={searchmsg} className="py-[6px] max-sm:py-[10px] max-sm:text-lg outline-none w-[95%]" />
+          <input type="search" placeholder="search" onChange={searchmsg} className="py-[6px] rounded-full max-sm:py-[10px] max-sm:text-lg outline-none w-[95%]" />
         </div>
 
         <div className="flex overflow-y-auto user-scroll h-[48.5vh] max-sm:h-[64vh] flex-col gap-2">
