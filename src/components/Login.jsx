@@ -15,6 +15,7 @@ const Login = () => {
   const [passmatch, setpassmatch] = useState(true);
   const [error, seterror] = useState("");
   const [isloading, setisloading] = useState(false)
+  const [guestbool, setguestbool] = useState(false)
 
   const navigate = useNavigate();
   const [token, settoken] = useCookies(["mytoken"]);
@@ -89,7 +90,14 @@ const Login = () => {
     setislogin(!islogin);
     seterror(true);
     setisloading(false)
+    setguestbool(true)
   };
+
+  const guesthandle =(e)=>{
+    e.preventDefault()
+    setinputdata({ username: "guest", password: "guest1234"})
+    setguestbool(true)
+  }
 
   return (
     <div className="flex flex-col h-full gap-3 relative justify-center items-center">
@@ -148,10 +156,11 @@ const Login = () => {
         )}
         <span className={`text-red-500 font-medium text-[15px] -mt-3 ${passmatch ? "invisible" : "visible"}`}>{error}.</span>
 
-        <button className="bg-blue-500 text-white flex justify-center font-bold w-[9vw] max-sm:w-[24vw] py-1 text-xl">
+        <button className="bg-blue-500 relative text-white flex justify-center font-bold w-[9vw] max-sm:w-[24vw] py-1 text-xl">
           {!isloading ? <span>{islogin ? "Login" : "Register"}</span> :<p className="w-6 h-6 my-[2px] rounded-full border-t-[3px] border-l-2 animate-spin border-white"></p>}
+          <div className={`${guestbool && 'hidden'} guest-anime absolute left-[60%] -top-[100%] w-[130%] rounded-xl text-gray-700 text-sm bg-gray-200 `}><span onClick={guesthandle} className="underline text-blue-500">guest</span><span onClick={()=>setguestbool(true)} className=" absolute -rotate-45 right-3 top-1 w-[2px] h-3 bg-gray-600 after:absolute after:rotate-90 after:top-0 after:right-0 after:w-[2px] after:h-3 after:bg-gray-600"></span><br /> Login credentials</div>
         </button>
-        <div>
+        <div >
           {islogin ? "Don't" : "Already"} Have An Account ,
           <span
             className="font-bold cursor-pointer text-green-700 text-lg border-b-[1px] border-black"

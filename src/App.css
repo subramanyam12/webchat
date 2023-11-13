@@ -82,3 +82,17 @@ body {
     margin-right: 0;
   }
 }
+
+.guest-anime{
+  transition: all 1000ms ease-in-out;
+  animation: moveguest 1000ms ease-out;
+}
+
+@keyframes moveguest {
+  from{
+    left: 50%;
+    top:-50%;
+    opacity: 0;
+  }
+ 
+}

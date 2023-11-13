@@ -71,7 +71,11 @@ const Users = ({getproffromusers,setchatactive}) => {
                 <div className="relative">
                 <img
                   className="w-[45px] h-[45px] object-cover object-center rounded-full max-sm:w-[55px] max-sm:h-[55px] "
-                  src={`https://sidduweb.pythonanywhere.com/${user?.profile_img}`}
+                  src={
+                    user?.profile_img
+                      ? `https://sidduweb.pythonanywhere.com${user.profile_img}`
+                      : "unknown.png"
+                  }
                 />
                 {user?.online_status && <small className="w-[10px] h-[10px] rounded-full absolute max-sm:right-1 right-0 bottom-0 bg-green-500"></small>}
                 </div>
