@@ -85,7 +85,7 @@ body {
 
 .guest-anime{
   transition: all 1000ms ease-in-out;
-  animation: moveguest 1000ms ease-out;
+  animation: moveguest 1000ms ease-in-out;
 }
 
 @keyframes moveguest {
