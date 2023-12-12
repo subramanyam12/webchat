@@ -46,12 +46,10 @@ useEffect(()=>{
  }
 
   const send = () => {
-    if(messages){
-     postmessage(inputmsg,localprofile?.id,frndchat?.id)
-     setinputmsg("");
-    }
+    postmessage(inputmsg,localprofile?.id,frndchat?.id)
+    setinputmsg("");
   }; 
-      
+
 
   return (
     <div className={`box-shadow ${chatactive ? 'block' :'hidden'} overflow-hidden chatwindow_animate max-sm:pb-8 max-sm:-mt-3 max-sm:-ml-3 max-sm:absolute max-sm:z-10 max-sm:top:0 max-sm:w-full max-sm:h-[95vh] flex flex-col bg-white p-3 pt-2 rounded-xl h-auto`}>

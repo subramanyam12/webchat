@@ -79,7 +79,10 @@ const Friends = () => {
                   }
                 />
                 <div className="flex w-full justify-center gap-2 flex-col">
-                  <span className="font-bold text-lg max-sm:text-xl">
+                  <span className="font-bold max-sm:hidden text-lg max-sm:text-xl">
+                    {user.usertag.length > 18 ? user.usertag.substring(0,16)+'...' :user.usertag}
+                  </span>
+                  <span className="font-bold max-sm:block hidden text-lg max-sm:text-xl">
                     {user.usertag}
                   </span>
                   <div className="flex w-[100%] text-white font-bold justify-around">
